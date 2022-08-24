@@ -31,15 +31,19 @@ def send_event_to_calculator(event):
 def main():
     future_events_data = get_future_odds()['response']
 
-    for event_data in future_events_data:
+    for event_index, event_data in enumerate(future_events_data):
         optimal_betting_strat = send_event_to_calculator(event_data)
         if optimal_betting_strat['profit'] >= 0:
             details = get_fixture_details(event_data['fixture']['id'])
 
-            print(optimal_betting_strat)
-            print(details)
+            output_message = json.dumps(optimal_betting_strat, indent=4) + '\n\n' + json.dumps(details, indent=4)
 
-            print(end='\n\n\n\n')
+            with open(f"Result_{event_index}", 'w') as file:
+                file.write(output_message)
+
+            print("\n\n\n\n")
+            print(output_message)
+            
 
 if __name__ == "__main__":
     main()
