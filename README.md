@@ -1,5 +1,5 @@
 # Simple Arbitrage Betting Calculator Interface
-A simple python code to gather betting data and interacting with the 'Arbitrage Betting Calculator'.
+A simple python code for gathering betting data and interacting with the 'Arbitrage Betting Calculator'.
 Note: This code is not tested, it only exists to give a quick starting point.
 
 ## API's used in this project

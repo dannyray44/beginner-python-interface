@@ -57,3 +57,4 @@ __pypackages__/
 .env
 
 config.json
+Result_*
