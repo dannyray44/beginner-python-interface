@@ -43,7 +43,7 @@ def main():
         for site in event_data['bookmakers']:
             for data in user_data:
                 if data['site'] == site['name'] or data['site_id'] == site['id']:
-                    site['max_bet'] = float(data['money'])
+                    site['site_balance'] = float(data['money'])
 
         optimal_betting_strat = send_event_to_calculator(event_data)
         if optimal_betting_strat['profit'] >= 0:

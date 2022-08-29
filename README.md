@@ -72,7 +72,7 @@ The arbitrage betting calculator will accept data in a similar format as laid ou
                 {
                     "id": Bet Type ID (e.g. 1),
                     "name": Bet Type Name (e.g "Match Winner"),
-                    "max_bet": "235.12"                 // How much money is available in this website, or how much you are willing to bet (default=1000)
+                    "site_balance": "235.12"            // How much money is available in this website, or how much you are willing to bet (default=1000)
                     "values": [
                         {
                             "value": What the bet is being placed on (e.g "Home"),
