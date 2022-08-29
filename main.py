@@ -1,6 +1,7 @@
 import json
 from rapid_api import API_Football, Arbitrage_Betting_Calculator
 from datetime import datetime, timedelta
+import csv
 
 def future_date_string(days_in_future = 1) -> str:
     return datetime.strftime(datetime.now() + timedelta(days=days_in_future), "%Y-%m-%d")
@@ -29,9 +30,21 @@ def send_event_to_calculator(event):
     return py_results_data
 
 def main():
+    user_data = []
     future_events_data = get_future_odds()['response']
 
+    with open('site_data.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            user_data.append(dict(row))
+
     for event_index, event_data in enumerate(future_events_data):
+
+        for site in event_data['bookmakers']:
+            for data in user_data:
+                if data['site'] == site['name'] or data['site_id'] == site['id']:
+                    site['max_bet'] = float(data['money'])
+
         optimal_betting_strat = send_event_to_calculator(event_data)
         if optimal_betting_strat['profit'] >= 0:
             details = get_fixture_details(event_data['fixture']['id'])
